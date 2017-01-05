@@ -1,0 +1,198 @@
+body 
+{
+    min-height: 100%;
+    margin: 0;
+}
+
+.navigation
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: #71BC78;
+    height: 60px;
+    text-align: center;
+}
+
+.visit-form
+{
+    top: 500px;
+    background: #ff0000;
+}
+
+.menu-items
+{
+	margin-top: 15px;
+	height: 70%;
+}
+
+.content
+{
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+}
+
+.first-col
+{
+    background-color: #fadfad;
+    flex: 1 15%;
+    order: 1;
+}
+
+.second-col
+{
+    flex: 1 70%;
+    order: 2;
+}
+
+.third-col
+{
+    background-color: #fadfad;
+    flex: 1 15%;
+    order: 3;
+}
+
+.navigation a
+{
+    text-decoration: none;
+    color: #fadfad;
+    font-size: 20px;
+}
+
+.main-info
+{
+	margin: 70px 30px;
+	display: flex;
+}
+
+.main-text
+{
+	margin-left: 20px;
+}
+
+.main-photo
+{
+    height: 400px;
+}
+
+.links
+{
+	margin: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font-size: 20px;
+	min-height: 200px;
+}
+
+.gal
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.closer
+{
+    z-index: 2;
+    right: 20px;
+    top: 8px;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    display: none;
+}
+
+.blackout
+{
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    background: #2f353b;
+    opacity: .9;
+}
+
+[id='close']:target ~ .closer,
+[id='close']:target ~ .blackout
+{
+    display: none;
+}
+
+.slides[id='slide1']:target ~ .bigPicture,
+.slides[id='slide2']:target ~ .bigPicture,
+.slides[id='slide3']:target ~ .bigPicture,
+.slides[id='slide4']:target ~ .bigPicture,
+.slides[id='slide5']:target ~ .bigPicture,
+.slides[id='slide6']:target ~ .bigPicture
+{
+    display: block;
+}
+
+.slides[id='slide1']:target ~ .blackout,
+.slides[id='slide2']:target ~ .blackout,
+.slides[id='slide3']:target ~ .blackout,
+.slides[id='slide4']:target ~ .blackout,
+.slides[id='slide5']:target ~ .blackout,
+.slides[id='slide6']:target ~ .blackout
+{
+    display: block;
+}
+
+.slides[id='slide1']:target ~ a .closer,
+.slides[id='slide2']:target ~ a .closer,
+.slides[id='slide3']:target ~ a .closer,
+.slides[id='slide4']:target ~ a .closer,
+.slides[id='slide5']:target ~ a .closer,
+.slides[id='slide6']:target ~ a .closer
+{
+    display: block;
+}
+
+.bigPicture
+{
+    display: none;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 40%;
+}
+
+.picture
+{
+    width: 200px;
+    margin-top: 10px;
+	box-shadow: 0px 0px 7px rgba(0,0,0,.8);
+}
+
+.slide1
+{
+}
+
+.slide2
+{
+}
+.slide3
+{
+}
+.slide4
+{
+}
+.slide5
+{
+}
+.slide6
+{
+}
