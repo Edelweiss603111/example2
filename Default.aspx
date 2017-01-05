@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+<%@ Page Language="c#"%>
+
+<%@ Import Namespace="System.Xml" %>
+
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8">
@@ -55,10 +60,7 @@
 <body onkeydown='control()'>
     <main class="content" id="main">
         <section class="first-col">
-             <script src="<%@ Page Language="c#"%>
-                 <%@ Import Namespace="System.Xml" %>
-                 <%
-                 var xmlDocument = new XmlDocument();
+             <% var xmlDocument = new XmlDocument();
                  xmlDocument.Load(Server.MapPath("data\\counter.xml"));
 
                  int counter = int.Parse(xmlDocument.DocumentElement.FirstChild.Value) + 1;
@@ -68,7 +70,6 @@
                  var div = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
                  div.Style.Add(HtmlTextWriterStyle.Top, "500px");
                  div.InnerHtml = counter.ToString();
-                 this.Controls.Add(div);
 
 
 
@@ -77,7 +78,7 @@
                  //graphics.Clear(Color.White);
                  //graphics.DrawString("Вы посетитель №" + counter, new Font("Arial", 12), new SolidBrush(Color.Red), 0, 0);
                  //Response.ContentType = "image/gif";
-        %>">
+        %>
         </section>
         <section class="second-col">
             <section id="main" class="main-info">
