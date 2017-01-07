@@ -1,10 +1,38 @@
 <%@ Page Language="c#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"%>
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="System.Xml" %>
+<%
+        var xmlDocument = new XmlDocument();
+        xmlDocument.Load(Server.MapPath("data\\counter.xml"));
+
+        var address = File.ReadAllLines(Server.MapPath("data\\addr.txt"));
+        var addrHashSet = new HashSet<string>(address);
+        bool isExist = addrHashSet.Contains(Request.UserHostAddress);
+        int counter = int.Parse(xmlDocument.DocumentElement.FirstChild.Value);
+        if (!isExist)
+        {
+            counter++;
+            File.AppendAllText(Server.MapPath("data\\addr.txt"), Request.UserHostAddress);
+        }
+        xmlDocument.DocumentElement.FirstChild.Value = counter.ToString();
+        xmlDocument.Save(Server.MapPath("data\\counter.xml"));
+        counterLabel.Text = counter.ToString();
+        var opinion = File.ReadAllLines(Server.MapPath("data\\comments.txt"));
+
+        for (var i = 0; i < opinion.Length; i++)
+        {
+            var label = new Label();
+            label.Text = opinion[i];
+            Panel1.Controls.Add(label);
+            Panel1.Controls.Add(new LiteralControl("<br>"));
+        }
+        textInputField.Text = string.Empty;
+%>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
     <title>Портфолио</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="index.css">
@@ -242,26 +270,24 @@
                 посетитель.
             </section>
             <form id="form1" runat="server" class="form1">
-                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <script runat="server">
-                    public void sendOpinion(object sender, EventArgs e)
-                    {
-                        if (textInputField.Text != "")
+                <div>
+                    <script runat="server">
+                        public void sendOpinion(object sender, EventArgs e)
                         {
-                            var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + "\n  Отзыв: ";
-                            opinion += textInputField.Text;
-                            File.AppendAllText(Server.MapPath("data\\comments.txt"), opinion);
-
+                            if (textInputField.Text != "")
+                            {
+                                var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + "\n  Отзыв: ";
+                                opinion += textInputField.Text;
+                                File.AppendAllText(Server.MapPath("data\\comments.txt"), opinion);
+                            }
                         }
-                    }
-                </script>
-                <asp:TextBox runat="server" ID ="textInputField" />
-                <asp:Button runat="server" Text="Отправить отзыв" ID="btnSendOpinion" OnClick="sendOpinion" /><br />
-                <asp:UpdatePanel runat="server" ID="Panel1"> 
-                    <ContentTemplate>       
+                    </script>
+                    <asp:TextBox runat="server" ID ="textInputField" />
+                    <asp:Button runat="server" Text="Отправить отзыв" ID="btnSendOpinion" OnClick="sendOpinion" /><br />
+                    <asp:Panel runat="server" ID="Panel1"> 
                         <asp:Label runat="server" Text="" ID="opinionText"></asp:Label>
-                    </ContentTemplate>
-                </asp:UpdatePanel>                
+                    </asp:Panel>      
+                </div>          
             </form>
         </section>
         <section class="third-col"></section>
