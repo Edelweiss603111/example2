@@ -113,7 +113,7 @@
                         <img src="images/slide6.jpg" class="picture" alt="">
                     </article>
                     <img src="images/slide6.jpg"
-                        class="bigPicture" alt="Морковь" id="1">
+                        class="bigPicture" alt="" id="1">
                     <div class="blackout">
                     </div>
                 </section>
