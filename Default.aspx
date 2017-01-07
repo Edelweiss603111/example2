@@ -14,9 +14,9 @@
         {
             counter++;
             File.AppendAllText(Server.MapPath("~/data/addr.txt"), Request.UserHostAddress);
+            xmlDocument.Save(Server.MapPath("~/data/counter.xml"));
         }
         xmlDocument.DocumentElement.FirstChild.Value = counter.ToString();
-        xmlDocument.Save(Server.MapPath("~/data/counter.xml"));
         counterLabel.Text = counter.ToString();
         var opinion = File.ReadAllLines(Server.MapPath("~/data/comments.txt"));
 
