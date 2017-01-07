@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+    <meta http-equiv="Content-Type" content="text/html;" charset="windows-1251" />
     <title>Портфолио</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="index.css">
