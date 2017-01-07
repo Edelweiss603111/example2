@@ -1,4 +1,4 @@
-<%@ Page Language="c#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"%>
+<%@ Page Language="c#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" UICulture="ru" Culture="ru-RU" %>
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="System.IO" %>
 <!DOCTYPE html>
