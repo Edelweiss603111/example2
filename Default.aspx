@@ -32,7 +32,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
+    <meta charset="windows-1251">
     <title>Портфолио</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="index.css">
