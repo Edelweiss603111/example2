@@ -1,8 +1,6 @@
-<%@ Page Language="c#"%>
-
-<%@ Import Namespace="System.Xml" %>
-
-
+<%@ Page Language="c#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"%>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.IO" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -58,27 +56,19 @@
     </script>
 </head>
 <body onkeydown='control()'>
+    <nav class="navigation">
+        <div class="menu-items menu-item1">
+            <a href="#main">Главная</a>
+        </div>
+        <div class="menu-items menu-item2">
+            <a href="#gallery">Галерея</a>
+        </div>
+        <div class="menu-items menu-item3">
+            <a href="#links">Cсылки</a>
+        </div>
+    </nav>
     <main class="content" id="main">
         <section class="first-col">
-             <% var xmlDocument = new XmlDocument();
-                 xmlDocument.Load(Server.MapPath("data\\counter.xml"));
-
-                 int counter = int.Parse(xmlDocument.DocumentElement.FirstChild.Value) + 1;
-                 xmlDocument.DocumentElement.FirstChild.Value = counter.ToString();
-                 xmlDocument.Save(Server.MapPath("data\\counter.xml"));
-
-                 var div = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-                 div.Style.Add(HtmlTextWriterStyle.Top, "500px");
-                 div.InnerHtml = counter.ToString();
-
-
-
-                 //var bitmap = new Bitmap(160, 20);
-                 //var graphics = Graphics.FromImage(bitmap);
-                 //graphics.Clear(Color.White);
-                 //graphics.DrawString("Вы посетитель №" + counter, new Font("Arial", 12), new SolidBrush(Color.Red), 0, 0);
-                 //Response.ContentType = "image/gif";
-        %>
         </section>
         <section class="second-col">
             <section id="main" class="main-info">
@@ -247,6 +237,32 @@
                 <a href="https://vk.com/id50889898">Vk</a>
                 <a href="mailto:arinavaruhina@gmail.com">Электронная почта</a>
             </section>
+            <section id="count" class="count"> Вы
+                <asp:Label Text="0" ID="counterLabel" runat="server"></asp:Label>
+                посетитель.
+            </section>
+            <form id="form1" runat="server" class="form1">
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <script runat="server">
+                    public void sendOpinion(object sender, EventArgs e)
+                    {
+                        if (textInputField.Text != "")
+                        {
+                            var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + "\n  Отзыв: ";
+                            opinion += textInputField.Text;
+                            File.AppendAllText(Server.MapPath("data\\comments.txt"), opinion);
+
+                        }
+                    }
+                </script>
+                <asp:TextBox runat="server" ID ="textInputField" />
+                <asp:Button runat="server" Text="Отправить отзыв" ID="btnSendOpinion" OnClick="sendOpinion" /><br />
+                <asp:UpdatePanel runat="server" ID="Panel1"> 
+                    <ContentTemplate>       
+                        <asp:Label runat="server" Text="" ID="opinionText"></asp:Label>
+                    </ContentTemplate>
+                </asp:UpdatePanel>                
+            </form>
         </section>
         <section class="third-col"></section>
     </main>
