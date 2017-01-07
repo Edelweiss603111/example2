@@ -1,10 +1,10 @@
-<%@ Page Language="c#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" UICulture="ru" Culture="ru-RU" %>
+<%@ Page Language="c#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"%>
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="System.IO" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;" charset="windows-1251" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Портфолио</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="index.css">
