@@ -301,7 +301,7 @@
                             $.ajax({
                                 type: "POST",
                                 url: "Default.aspx/sendOpinion",
-                                data: $("#<%=textInputField.ClientID%>")[0].value,
+                                data: "fhfhfh",
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 success: OnSuccess,
