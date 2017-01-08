@@ -294,7 +294,7 @@
                         }
                     </script>
                     <asp:TextBox runat="server" ID ="textInputField" />
-                    <asp:Button runat="server" Text="Отправить отзыв" ID="btnSendOpinion" OnClick="sendOpinion()" /><br />
+                    <asp:Button runat="server" Text="Отправить отзыв" ID="btnSendOpinion" OnClick="sendOpinion" /><br />
                     <asp:Panel runat="server" ID="Panel1"> 
                         <asp:Label runat="server" Text="" ID="opinionText"></asp:Label>
                     </asp:Panel>      
