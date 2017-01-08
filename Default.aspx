@@ -283,37 +283,20 @@
             <form id="form1" runat="server" class="form1">
                 <div>
                     <script runat="server">
-                        [System.Web.Services.WebMethod]
-                        public static string sendOpinion(string opinionText)
+                        public string sendOpinion()
                         {
                             if (opinionText != "")
                             {
                                 var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + "\n  Отзыв: ";
-                                opinion += opinionText;
+                                opinion += textInputField.Text;
+                                File.AppendAllText(Server.MapPath("~/data/comments.txt"), opinion);
                                 return opinion;
                             }
-                            return opinionText;
-                        }
-                    </script>
-                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-                    <script type='text/javascript'>
-                        function SendOpinion() {
-                            $.ajax({
-                                type: "POST",
-                                url: "Default.aspx/sendOpinion",
-                                data: "fhfhfh",
-                                success: OnSuccess,
-                                failure: function (response) {
-                                    alert(response.d);
-                                }
-                            });
-                        }
-                        function OnSuccess(response) {
-                            alert(response.d);
+                            return textInputField.Text;
                         }
                     </script>
                     <asp:TextBox runat="server" ID ="textInputField" />
-                    <input value="Отправить отзыв" type="button" id="btnSendOpinion" onclick="SendOpinion()" /><br />
+                    <asp:Button runat="server" Text="Отправить отзыв" ID="btnSendOpinion" OnClick="sendOpinion()" /><br />
                     <asp:Panel runat="server" ID="Panel1"> 
                         <asp:Label runat="server" Text="" ID="opinionText"></asp:Label>
                     </asp:Panel>      
