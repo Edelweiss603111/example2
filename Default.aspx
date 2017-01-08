@@ -283,7 +283,7 @@
             <form id="form1" runat="server" class="form1">
                 <div>
                     <script runat="server">
-                        public void sendOpinion()
+                        public void sendOpinion(object sender, EventArgs e)
                         {
                             if (textInputField.Text != "")
                             {
