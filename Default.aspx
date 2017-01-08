@@ -284,13 +284,12 @@
                 <div>
                     <script runat="server">
                         [System.Web.Services.WebMethod]
-                        public string sendOpinion(string opinionText)
+                        public static string sendOpinion(string opinionText)
                         {
                             if (opinionText != "")
                             {
                                 var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + "\n  Отзыв: ";
                                 opinion += opinionText;
-                                File.AppendAllText(Server.MapPath("data\\comments.txt"), opinion);
                                 return opinion;
                             }
                             return opinionText;
