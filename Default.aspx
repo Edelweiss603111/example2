@@ -283,18 +283,40 @@
             <form id="form1" runat="server" class="form1">
                 <div>
                     <script runat="server">
-                        public void sendOpinion(object sender, EventArgs e)
+                        [System.Web.Services.WebMethod]
+                        public string sendOpinion(string opinionText)
                         {
-                            if (textInputField.Text != "")
+                            if (opinionText != "")
                             {
                                 var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + "\n  Отзыв: ";
-                                opinion += textInputField.Text;
-                                File.AppendAllText(Server.MapPath("~/data/comments.txt"), opinion);
+                                opinion += opinionText;
+                                File.AppendAllText(Server.MapPath("data\\comments.txt"), opinion);
+                                return opinion;
                             }
+                            return opinionText;
+                        }
+                    </script>
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+                    <script type='text/javascript'>
+                        function SendOpinion() {
+                            $.ajax({
+                                type: "POST",
+                                url: "Default.aspx/sendOpinion",
+                                data: $("#<%=textInputField.ClientID%>")[0].value,
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: OnSuccess,
+                                failure: function (response) {
+                                    alert(response.d);
+                                }
+                            });
+                        }
+                        function OnSuccess(response) {
+                            alert(response.d);
                         }
                     </script>
                     <asp:TextBox runat="server" ID ="textInputField" />
-                    <asp:Button runat="server" Text="Отправить отзыв" ID="btnSendOpinion" OnClick="sendOpinion" /><br />
+                    <input value="Отправить отзыв" type="button" id="btnSendOpinion" onclick="SendOpinion()" /><br />
                     <asp:Panel runat="server" ID="Panel1"> 
                         <asp:Label runat="server" Text="" ID="opinionText"></asp:Label>
                     </asp:Panel>      
