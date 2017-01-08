@@ -283,16 +283,14 @@
             <form id="form1" runat="server" class="form1">
                 <div>
                     <script runat="server">
-                        public string sendOpinion()
+                        public void sendOpinion()
                         {
-                            if (opinionText != "")
+                            if (textInputField.Text != "")
                             {
                                 var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + "\n  Отзыв: ";
                                 opinion += textInputField.Text;
                                 File.AppendAllText(Server.MapPath("~/data/comments.txt"), opinion);
-                                return opinion;
                             }
-                            return textInputField.Text;
                         }
                     </script>
                     <asp:TextBox runat="server" ID ="textInputField" />
