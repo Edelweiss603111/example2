@@ -302,8 +302,6 @@
                                 type: "POST",
                                 url: "Default.aspx/sendOpinion",
                                 data: "fhfhfh",
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
                                 success: OnSuccess,
                                 failure: function (response) {
                                     alert(response.d);
