@@ -81,16 +81,6 @@
                 }
             }
         }
-
-        function createThumbnail()
-        {
-            var pictures = document.getElementsByClassName("picture");
-            for (var i = 0; i < pictures.length; i++) {
-                pictures[i].style.width = screen.width / 6 + 'px';
-                pictures[i].style.margin = '3px';
-                pictures[i].style.float = 'right';
-            }
-        }
     </script>
 </head>
 <body onkeydown='control()'>
