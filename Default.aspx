@@ -18,7 +18,7 @@
             xmlDocument.Save(Server.MapPath("~/data/counter.xml"));
         }
         xmlDocument.DocumentElement.FirstChild.Value = counter.ToString();
-        counterLabel.Text = Request.ServerVariables["REMOTE_ADDR"];
+        counterLabel.Text = Request.UserHostAddress;
         var opinion = File.ReadAllLines(Server.MapPath("~/data/comments.txt"));
 
         for (var i = 0; i < opinion.Length; i++)
