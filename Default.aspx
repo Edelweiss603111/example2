@@ -14,10 +14,10 @@
         if (!isExist)
         {
             counter++;
+            xmlDocument.DocumentElement.FirstChild.Value = counter.ToString();
             File.AppendAllText(Server.MapPath("~/data/addr.txt"), Request.ServerVariables["REMOTE_ADDR"]+"\n");
             xmlDocument.Save(Server.MapPath("~/data/counter.xml"));
         }
-        xmlDocument.DocumentElement.FirstChild.Value = counter.ToString();
         counterLabel.Text = counter.ToString();
         var opinion = File.ReadAllLines(Server.MapPath("~/data/comments.txt"));
 
