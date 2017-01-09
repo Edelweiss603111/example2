@@ -15,4 +15,17 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
     }
+    [System.Web.Services.WebMethod]
+    public static string SendOpinion(string opinionText)
+    {
+        if (opinionText != "")
+        {
+            var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + " Отзыв: ";
+            opinion += opinionText;
+            var page = new Page();
+            File.AppendAllText(page.Server.MapPath("~/data/comments.txt"), opinion);
+            return opinion;
+        }
+        return opinionText;
+    }
 }
