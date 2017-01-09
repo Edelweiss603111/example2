@@ -8,13 +8,13 @@
 
         var address = File.ReadAllLines(Server.MapPath("~/data/addr.txt"));
         var addrHashSet = new HashSet<string>(address);
-        bool isExist = addrHashSet.Contains(Request.UserHostAddress);
+        bool isExist = addrHashSet.Contains(Request.ServerVariables["REMOTE_ADDR"]);
         int counter = int.Parse(xmlDocument.DocumentElement.FirstChild.Value);
         
         if (!isExist)
         {
             counter++;
-            File.AppendAllText(Server.MapPath("~/data/addr.txt"), Request.UserHostAddress);
+            File.AppendAllText(Server.MapPath("~/data/addr.txt"), Request.ServerVariables["REMOTE_ADDR"]);
             xmlDocument.Save(Server.MapPath("~/data/counter.xml"));
         }
         xmlDocument.DocumentElement.FirstChild.Value = counter.ToString();
