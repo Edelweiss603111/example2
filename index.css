@@ -81,7 +81,6 @@ body
 {
     height: 400px;
 }
-
 .links
 {
 	margin: 40px;
@@ -94,7 +93,9 @@ body
 
 .gal
 {
-    display: block;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 
 .closer
@@ -136,17 +137,8 @@ body
 
 .picture
 {
+    width: 200px;
+    margin-top: 10px;
     box-shadow: 0px 0px 7px rgba(0,0,0,.8);
 }
 
-.links,
-.count,
-.form1
-{
-    display:block;
-}
-
-.links a
-{
-    display:block;
-}
