@@ -93,7 +93,7 @@
         }
     </script>
 </head>
-<body onkeydown='control()' onload="createThumbnail()">
+<body onkeydown='control()'>
     <nav class="navigation">
         <div class="menu-items menu-item1">
             <a href="#main">Главная</a>
