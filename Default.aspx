@@ -287,14 +287,15 @@
                             });
                         }
                         function OnSuccess(response) {
-                            var parentDiv = document.getElementById("Panel1");
-                            var newlabel = document.createElement("Label");
-                            newlabel.innerHTML = response.d;
-                            parentDiv.appendChild(newlabel);
-                            parentDiv.appendChild(document.createElement("br"));
-                            var textbox = document.getElementById("textInputField");
-                            textbox.value = "";
-                            
+                            if (response.d !== ""){
+                                var parentDiv = document.getElementById("Panel1");
+                                var newlabel = document.createElement("Label");
+                                newlabel.innerHTML = response.d;
+                                parentDiv.appendChild(newlabel);
+                                parentDiv.appendChild(document.createElement("br"));
+                                var textbox = document.getElementById("textInputField");
+                                textbox.value = "";
+                            }
                         }
                     </script>
                     <asp:TextBox runat="server" ID ="textInputField"/>
