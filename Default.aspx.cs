@@ -20,7 +20,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if (opinionText != "")
         {
-            var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + " Отзыв: ";
+            var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + "  Отзыв: ";
             opinion += System.Net.WebUtility.HtmlEncode(opinionText);
             var page = new Page();
             File.AppendAllText(page.Server.MapPath("~/data/comments.txt"), opinion);
