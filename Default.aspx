@@ -28,7 +28,6 @@
             Panel1.Controls.Add(label);
             Panel1.Controls.Add(new LiteralControl("<br>"));
         }
-        textInputField.Text = string.Empty;
 %>
 <!DOCTYPE html>
 <html>
@@ -282,22 +281,37 @@
             </section>
             <form id="form1" runat="server" class="form1">
                 <div>
-                    <script runat="server">
-                        public void sendOpinion(object sender, EventArgs e)
-                        {
-                            if (textInputField.Text != "")
-                            {
-                                var opinion = "\n" + DateTime.Now.ToString("dd MMMM yyyy  |  HH:mm:ss") + "\n  Отзыв: ";
-                                opinion += textInputField.Text;
-                                File.AppendAllText(Server.MapPath("~/data/comments.txt"), opinion);
-                            }
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+                    <script type='text/javascript'>
+                        function sendOpinion() {
+                            $.ajax({
+                                type: "POST",
+                                url: "Default.aspx/sendOpinion",
+                                data: '{opinionText: "' + $("#<%=textInputField.ClientID%>")[0].value + '" }',
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: OnSuccess,
+                                failure: function (response) {
+                                    alert(response.d);
+                                }
+                            });
+                        }
+                        function OnSuccess(response) {
+                            var parentDiv = document.getElementById("Panel1");
+                            var newlabel = document.createElement("Label");
+                            newlabel.innerHTML = response.d;
+                            parentDiv.appendChild(newlabel);
+                            parentDiv.appendChild(document.createElement("br"));
+                            var textbox = document.getElementById("textInputField");
+                            textbox.value = "";
+                            
                         }
                     </script>
-                    <asp:TextBox runat="server" ID ="textInputField" />
-                    <asp:Button runat="server" Text="Отправить отзыв" ID="btnSendOpinion" OnClick="sendOpinion" /><br />
+                    <asp:TextBox runat="server" ID ="textInputField"/>
+                    <input value="Отправить отзыв" type="button" id="btnSendOpinion" onclick="sendOpinion()" /><br />
                     <asp:Panel runat="server" ID="Panel1"> 
                         <asp:Label runat="server" Text="" ID="opinionText"></asp:Label>
-                    </asp:Panel>      
+                    </asp:Panel>     
                 </div>          
             </form>
         </section>
