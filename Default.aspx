@@ -15,7 +15,7 @@
         {
             counter++;
             counterLabel.Text = Request.UserHostAddress;
-            File.AppendAllText(Server.MapPath("~/data/addr.txt"), Request.ServerVariables["REMOTE_ADDR"]);
+            File.AppendAllText(Server.MapPath("~/data/addr.txt"), Request.ServerVariables["REMOTE_ADDR"]+"\n");
             xmlDocument.Save(Server.MapPath("~/data/counter.xml"));
         }
         xmlDocument.DocumentElement.FirstChild.Value = counter.ToString();
